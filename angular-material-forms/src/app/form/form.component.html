@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <div *ngFor="let phrase of form_info; let i = index">
+                <mat-form-field appearance="fill">
+                    <mat-label>{{phrase.title}}</mat-label>
+                    <textarea matInput [formControl]="formControls[i]">
+                    </textarea>
+                </mat-form-field>
+                <p>Word Counter: {{word_count_value[i]}}</p>
+                <button mat-raised-button type="button" color="primary" (click)="submitForm(i)">Enviar</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

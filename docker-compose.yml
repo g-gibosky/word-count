@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  angular:
+    build: 
+      context: ./angular-material-forms
+    ports:
+     - "8080:80"
+    depends_on:
+      - backend
+
+  backend:
+    environment:
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - ./src:/code
+      - ./static:/static
+      - ./templates:/templates
+    restart: on-failure
+    command: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
+    build:
+      context: ./backend-fastapi
+    ports:
+      - "8000:80"
